@@ -1,0 +1,134 @@
+{
+  "company": "Zion Tech Group",
+  "hub": "https://ziontechgroup.com",
+  "sites": [
+    {
+      "id": "network",
+      "repo": "Zion-support/zion-network",
+      "pages": "https://ziontechgroup.com/zion-network/",
+      "subdomain": "https://network.ziontechgroup.com",
+      "title": "Zion Network"
+    },
+    {
+      "id": "agents",
+      "repo": "Zion-support/zion-agents",
+      "pages": "https://ziontechgroup.com/zion-agents/",
+      "subdomain": "https://agents.ziontechgroup.com",
+      "title": "Zion Agents"
+    },
+    {
+      "id": "discovery",
+      "repo": "Zion-support/zion-discovery",
+      "pages": "https://ziontechgroup.com/zion-discovery/",
+      "subdomain": "https://discovery.ziontechgroup.com",
+      "title": "Zion Discovery"
+    },
+    {
+      "id": "plans",
+      "repo": "Zion-support/zion-plans",
+      "pages": "https://ziontechgroup.com/zion-plans/",
+      "subdomain": "https://plans.ziontechgroup.com",
+      "title": "Zion Plans"
+    },
+    {
+      "id": "field",
+      "repo": "Zion-support/zion-field",
+      "pages": "https://ziontechgroup.com/zion-field/",
+      "subdomain": "https://field.ziontechgroup.com",
+      "title": "Zion Field"
+    },
+    {
+      "id": "status",
+      "repo": "Zion-support/zion-status",
+      "pages": "https://ziontechgroup.com/zion-status/",
+      "subdomain": "https://status.ziontechgroup.com",
+      "title": "Zion Status"
+    },
+    {
+      "id": "tools",
+      "repo": "Zion-support/zion-tools",
+      "pages": "https://ziontechgroup.com/zion-tools/",
+      "subdomain": "https://tools.ziontechgroup.com",
+      "title": "Zion Tools"
+    },
+    {
+      "id": "portal",
+      "repo": "Zion-support/zion-portal",
+      "pages": "https://ziontechgroup.com/zion-portal/",
+      "subdomain": "https://portal.ziontechgroup.com",
+      "title": "Zion Portal"
+    }
+  ],
+  "plans": {
+    "discovery": {
+      "usd": "https://buy.stripe.com/8x214o8NW35l5Xp3hm4ZG0b",
+      "brl": "https://buy.stripe.com/9B69AU8NW5dt71t8BG4ZG09",
+      "price": "$99 / R$99",
+      "name": "Discovery",
+      "items": "One process \u00b7 report \u00b7 30-min session"
+    },
+    "consulting": {
+      "usd": "https://buy.stripe.com/4gM14ofck0Xd1H94lq4ZG08",
+      "brl": "https://buy.stripe.com/00w6oIaW46hx2Ld7xC4ZG0e",
+      "price": "$499 / R$499",
+      "name": "Consulting",
+      "items": "Strategy \u00b7 roadmap \u00b7 3 sessions"
+    },
+    "starter": {
+      "usd": "https://buy.stripe.com/7sY00k7JScFV99Bf044ZG06",
+      "brl": "https://buy.stripe.com/6oUcN6d4c8pFgC305a4ZG0d",
+      "price": "$2,500 / R$2.500",
+      "name": "Starter",
+      "items": "One automation in production \u00b7 30-day support"
+    },
+    "growth": {
+      "usd": "https://buy.stripe.com/aFa5kEd4c21h3PhdW04ZG07",
+      "brl": "https://buy.stripe.com/bJecN6e8gfS7gC3dW04ZG0c",
+      "price": "$8,000/mo",
+      "name": "Growth",
+      "items": "Continuous ops \u00b7 contracted SLA"
+    }
+  },
+  "dns": [
+    {
+      "host": "network",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    },
+    {
+      "host": "agents",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    },
+    {
+      "host": "discovery",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    },
+    {
+      "host": "plans",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    },
+    {
+      "host": "field",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    },
+    {
+      "host": "status",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    },
+    {
+      "host": "tools",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    },
+    {
+      "host": "portal",
+      "type": "CNAME",
+      "value": "zion-support.github.io"
+    }
+  ]
+}
