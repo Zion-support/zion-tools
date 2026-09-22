@@ -1,16 +1,10 @@
-# 🌐 Zion App Network — Interlinks
+# Zion Tools
 
-**zion-tools** is part of the Zion Tech Group app network (630+ apps).
+ROI, FinOps, and SLA calculators for operators.
 
-- 📇 [Master Index](https://github.com/Zion-support/zion-network/blob/main/APPS_NETWORK.md)
-- 🗂️ Category: [Cost, FinOps & Cloud](https://github.com/Zion-support/zion-network/blob/main/network/cost-finops-cloud.md)
+## Network
+- 📚 Master catalog: [zion-app-network/CATALOG.md](https://github.com/Zion-support/zion-app-network/blob/main/CATALOG.md)
+- Hubs: [zion-app-network](https://github.com/Zion-support/zion-app-network) · [zion-apps-hub](https://github.com/Zion-support/zion-apps-hub)
+- Related: [tools](https://github.com/Zion-support/tools) · [roi-calculator](https://github.com/Zion-support/roi-calculator) · [ai-roi-calculator](https://github.com/Zion-support/ai-roi-calculator) · [slo-calculator](https://github.com/Zion-support/slo-calculator) · [llm-cost-calculator](https://github.com/Zion-support/llm-cost-calculator)
 
-## Related apps
-- [zion-network](https://github.com/Zion-support/zion-network) — network hub
-- [zion-status](https://github.com/Zion-support/zion-status) — fleet & site status
-- [zion-plans](https://github.com/Zion-support/zion-plans) — plans & pricing catalog
-- [zion-portal](https://github.com/Zion-support/zion-portal) — client workspace
-- [tools](https://github.com/Zion-support/tools) — AI tools catalog
-
----
-🌐 [Network Index](https://github.com/Zion-support/zion-network/blob/main/APPS_NETWORK.md) · [Status](https://zion-support.github.io/zion-status/) · [Plans](https://zion-support.github.io/zion-plans/) · [Portal](https://zion-support.github.io/zion-portal/)
+*Zion Tech Group · [ziontechgroup.com](https://ziontechgroup.com)*
