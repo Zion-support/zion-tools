@@ -24,25 +24,30 @@
   if (sla) { sla.addEventListener("change", field); qty.addEventListener("input", field); field(); }
 
   function roi() {
-    const people = Number(document.getElementById("people")?.value || 0);
-    const hours = Number(document.getElementById("hours")?.value || 0);
-    const rate = Number(document.getElementById("rate")?.value || 0);
-    const cover = Number(document.getElementById("cover")?.value || 0);
+    const nonNegative = (id) => {
+      const n = Number(document.getElementById(id)?.value || 0);
+      return Number.isFinite(n) ? Math.max(0, n) : 0;
+    };
+    const people = nonNegative("people");
+    const hours = nonNegative("hours");
+    const rate = nonNegative("rate");
+    const cover = Math.min(100, nonNegative("cover"));
+    const investment = nonNegative("investment");
     const weekly = people * hours * rate * (cover / 100);
     const yearly = weekly * 48;
     const w = document.getElementById("weekly");
     if (!w) return;
     w.textContent = "$" + Math.round(weekly).toLocaleString();
     document.getElementById("yearly").textContent = "$" + Math.round(yearly).toLocaleString();
-    document.getElementById("payback").textContent = yearly ? (2500 / (yearly / 12)).toFixed(1) : "—";
+    document.getElementById("payback").textContent = yearly > 0 && investment > 0 ? (investment / (yearly / 12)).toFixed(1) : "—";
   }
-  ["people","hours","rate","cover"].forEach((id) => document.getElementById(id)?.addEventListener("input", roi));
+  ["people","hours","rate","cover","investment"].forEach((id) => document.getElementById(id)?.addEventListener("input", roi));
   roi();
   function finops() {
     const idle = document.getElementById("idle");
     if (!idle) return;
-    const spend = Number(document.getElementById("spend").value || 0);
-    const waste = Number(document.getElementById("waste").value || 0);
+    const spend = Math.max(0, Number(document.getElementById("spend").value) || 0);
+    const waste = Math.min(100, Math.max(0, Number(document.getElementById("waste").value) || 0));
     idle.textContent = "$" + Math.round(spend * waste / 100).toLocaleString();
   }
   ["spend","waste"].forEach((id) => document.getElementById(id)?.addEventListener("input", finops));
