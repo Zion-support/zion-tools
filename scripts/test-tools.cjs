@@ -75,3 +75,15 @@ inputs.spend.value="-100";inputs.spend.handlers.input();
 assert.equal(output.idle.textContent,"$0","Negative spend must be bounded at zero");
 
 console.log("PASS: 5 locale loads, locale switching, translated links, 11 IDs, ROI/payback/FinOps and invalid-input guards.");
+
+inputs.spend.value="1e308";inputs.waste.value="100";inputs.waste.handlers.input();
+assert.equal(output.idle.textContent,"$"+Math.round(1e308).toLocaleString(),"Finite spend must not overflow merely when multiplied by percent");
+inputs.spend.value="Infinity";inputs.spend.handlers.input();
+assert.equal(output.idle.textContent,"$0","Non-finite spend must not render infinity");
+inputs.people.value="1e200";inputs.hours.value="1e200";inputs.rate.value="100";inputs.cover.value="100";inputs.people.handlers.input();
+assert.equal(output.weekly.textContent,"—","Overflowed weekly result must be unavailable");
+assert.equal(output.yearly.textContent,"—","Overflowed annual result must be unavailable");
+assert.equal(output.payback.textContent,"—","Overflowed savings must not imply instant payback");
+inputs.people.value="1e-300";inputs.hours.value="1";inputs.rate.value="1";inputs.cover.value="100";inputs.investment.value="1e308";inputs.people.handlers.input();
+assert.equal(output.payback.textContent,"—","Unrepresentable payback must not render infinity");
+console.log("PASS: six added numerical-overflow regression assertions.");

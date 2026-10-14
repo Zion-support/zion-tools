@@ -37,18 +37,27 @@
     const yearly = weekly * 48;
     const w = document.getElementById("weekly");
     if (!w) return;
+    if (!Number.isFinite(weekly) || !Number.isFinite(yearly)) {
+      w.textContent = "—";
+      document.getElementById("yearly").textContent = "—";
+      document.getElementById("payback").textContent = "—";
+      return;
+    }
     w.textContent = "$" + Math.round(weekly).toLocaleString();
     document.getElementById("yearly").textContent = "$" + Math.round(yearly).toLocaleString();
-    document.getElementById("payback").textContent = yearly > 0 && investment > 0 ? (investment / (yearly / 12)).toFixed(1) : "—";
+    const months = yearly > 0 && investment > 0 ? investment / (yearly / 12) : NaN;
+    document.getElementById("payback").textContent = Number.isFinite(months) ? months.toFixed(1) : "—";
   }
   ["people","hours","rate","cover","investment"].forEach((id) => document.getElementById(id)?.addEventListener("input", roi));
   roi();
   function finops() {
     const idle = document.getElementById("idle");
     if (!idle) return;
-    const spend = Math.max(0, Number(document.getElementById("spend").value) || 0);
-    const waste = Math.min(100, Math.max(0, Number(document.getElementById("waste").value) || 0));
-    idle.textContent = "$" + Math.round(spend * waste / 100).toLocaleString();
+    const rawSpend = Number(document.getElementById("spend").value);
+    const rawWaste = Number(document.getElementById("waste").value);
+    const spend = Number.isFinite(rawSpend) ? Math.max(0, rawSpend) : 0;
+    const waste = Number.isFinite(rawWaste) ? Math.min(100, Math.max(0, rawWaste)) : 0;
+    idle.textContent = "$" + Math.round(spend * (waste / 100)).toLocaleString();
   }
   ["spend","waste"].forEach((id) => document.getElementById(id)?.addEventListener("input", finops));
   finops();
