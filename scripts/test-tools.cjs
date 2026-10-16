@@ -87,3 +87,42 @@ assert.equal(output.payback.textContent,"—","Overflowed savings must not imply
 inputs.people.value="1e-300";inputs.hours.value="1";inputs.rate.value="1";inputs.cover.value="100";inputs.investment.value="1e308";inputs.people.handlers.input();
 assert.equal(output.payback.textContent,"—","Unrepresentable payback must not render infinity");
 console.log("PASS: six added numerical-overflow regression assertions.");
+
+// Locale formatting must follow the selected UI language, not the runner default.
+function localizedScenario(language) {
+  const values = {people:"3", hours:"8", rate:"45", cover:"60", investment:"2500", spend:"18000", waste:"22"};
+  const nodes = {};
+  for (const [id, value] of Object.entries(values)) {
+    nodes[id] = {value, handlers:{}, addEventListener(event, fn){this.handlers[event]=fn;}};
+  }
+  for (const id of ["weekly","yearly","payback","idle"]) nodes[id] = {textContent:""};
+  const changeHandlers = [];
+  nodes["zion-language"] = {addEventListener(event, fn){if(event==="change")changeHandlers.push(fn);}};
+  const document = {documentElement:{lang:language}, getElementById(id){return nodes[id]||null;}};
+  vm.runInNewContext(calc, {document}, {timeout:1500});
+  return {nodes, document, changeHandlers};
+}
+const numericLocales = {en:"en-US", "pt-BR":"pt-BR", es:"es-ES", fr:"fr-FR", de:"de-DE"};
+for (const [language, locale] of Object.entries(numericLocales)) {
+  const scenario = localizedScenario(language);
+  const money = new Intl.NumberFormat(locale, {style:"currency", currency:"USD", maximumFractionDigits:0});
+  const decimal = new Intl.NumberFormat(locale, {minimumFractionDigits:1, maximumFractionDigits:1});
+  assert.equal(scenario.nodes.weekly.textContent, money.format(648), "Weekly format: " + language);
+  assert.equal(scenario.nodes.yearly.textContent, money.format(31104), "Annual format: " + language);
+  assert.equal(scenario.nodes.idle.textContent, money.format(3960), "Cloud format: " + language);
+  assert.equal(scenario.nodes.payback.textContent, decimal.format(2500/(31104/12)), "Payback format: " + language);
+  scenario.nodes.investment.value = "5000";
+  scenario.nodes.investment.handlers.input();
+  assert.equal(scenario.nodes.payback.textContent, decimal.format(5000/(31104/12)), "Edited budget: " + language);
+  const originalValues = Object.fromEntries(Object.entries(scenario.nodes).filter(([,node])=>"value" in node).map(([id,node])=>[id,node.value]));
+  scenario.document.documentElement.lang = "en";
+  assert.equal(scenario.changeHandlers.length, 1, "One calculation repaint listener");
+  scenario.changeHandlers[0]();
+  assert.equal(scenario.nodes.yearly.textContent, "$31,104", "Language switch repaints values immediately");
+  assert.equal(scenario.nodes.payback.textContent, "1.9", "Language switch repaints decimal separator");
+  assert.deepEqual(Object.fromEntries(Object.entries(scenario.nodes).filter(([,node])=>"value" in node).map(([id,node])=>[id,node.value])), originalValues, "Language switch must not change entered values");
+}
+for (const language of ["", "invalid", "__proto__"]) {
+  assert.equal(localizedScenario(language).nodes.yearly.textContent, "$31,104", "Unknown locale falls back safely");
+}
+console.log("PASS: five numeric locales, editable budget, immediate language-switch repaint and safe locale fallback.");
