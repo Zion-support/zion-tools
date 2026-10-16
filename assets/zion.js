@@ -23,6 +23,23 @@
   }
   if (sla) { sla.addEventListener("change", field); qty.addEventListener("input", field); field(); }
 
+  // Currency stays USD: changing the interface language is not an FX conversion.
+  function numberLocale() {
+    const locales = {en: "en-US", pt: "pt-BR", es: "es-ES", fr: "fr-FR", de: "de-DE"};
+    const language = String(document.documentElement?.lang || "en").toLowerCase().split("-")[0];
+    return Object.prototype.hasOwnProperty.call(locales, language) ? locales[language] : locales.en;
+  }
+  function formatUSD(value) {
+    return new Intl.NumberFormat(numberLocale(), {
+      style: "currency", currency: "USD", maximumFractionDigits: 0
+    }).format(Math.round(value));
+  }
+  function formatMonths(value) {
+    return new Intl.NumberFormat(numberLocale(), {
+      minimumFractionDigits: 1, maximumFractionDigits: 1
+    }).format(value);
+  }
+
   function roi() {
     const nonNegative = (id) => {
       const n = Number(document.getElementById(id)?.value || 0);
@@ -43,10 +60,10 @@
       document.getElementById("payback").textContent = "—";
       return;
     }
-    w.textContent = "$" + Math.round(weekly).toLocaleString();
-    document.getElementById("yearly").textContent = "$" + Math.round(yearly).toLocaleString();
+    w.textContent = formatUSD(weekly);
+    document.getElementById("yearly").textContent = formatUSD(yearly);
     const months = yearly > 0 && investment > 0 ? investment / (yearly / 12) : NaN;
-    document.getElementById("payback").textContent = Number.isFinite(months) ? months.toFixed(1) : "—";
+    document.getElementById("payback").textContent = Number.isFinite(months) ? formatMonths(months) : "—";
   }
   ["people","hours","rate","cover","investment"].forEach((id) => document.getElementById(id)?.addEventListener("input", roi));
   roi();
@@ -57,10 +74,15 @@
     const rawWaste = Number(document.getElementById("waste").value);
     const spend = Number.isFinite(rawSpend) ? Math.max(0, rawSpend) : 0;
     const waste = Number.isFinite(rawWaste) ? Math.min(100, Math.max(0, rawWaste)) : 0;
-    idle.textContent = "$" + Math.round(spend * (waste / 100)).toLocaleString();
+    idle.textContent = formatUSD(spend * (waste / 100));
   }
   ["spend","waste"].forEach((id) => document.getElementById(id)?.addEventListener("input", finops));
   finops();
+  // The page's earlier change listener sets document.lang before this repaint.
+  document.getElementById("zion-language")?.addEventListener("change", () => {
+    roi();
+    finops();
+  });
 
   const form = document.getElementById("ticket");
   const box = document.getElementById("tickets");
