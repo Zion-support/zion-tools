@@ -23,30 +23,66 @@
   }
   if (sla) { sla.addEventListener("change", field); qty.addEventListener("input", field); field(); }
 
+  // Currency stays USD: changing the interface language is not an FX conversion.
+  function numberLocale() {
+    const locales = {en: "en-US", pt: "pt-BR", es: "es-ES", fr: "fr-FR", de: "de-DE"};
+    const language = String(document.documentElement?.lang || "en").toLowerCase().split("-")[0];
+    return Object.prototype.hasOwnProperty.call(locales, language) ? locales[language] : locales.en;
+  }
+  function formatUSD(value) {
+    return new Intl.NumberFormat(numberLocale(), {
+      style: "currency", currency: "USD", maximumFractionDigits: 0
+    }).format(Math.round(value));
+  }
+  function formatMonths(value) {
+    return new Intl.NumberFormat(numberLocale(), {
+      minimumFractionDigits: 1, maximumFractionDigits: 1
+    }).format(value);
+  }
+
   function roi() {
-    const people = Number(document.getElementById("people")?.value || 0);
-    const hours = Number(document.getElementById("hours")?.value || 0);
-    const rate = Number(document.getElementById("rate")?.value || 0);
-    const cover = Number(document.getElementById("cover")?.value || 0);
+    const nonNegative = (id) => {
+      const n = Number(document.getElementById(id)?.value || 0);
+      return Number.isFinite(n) ? Math.max(0, n) : 0;
+    };
+    const people = nonNegative("people");
+    const hours = nonNegative("hours");
+    const rate = nonNegative("rate");
+    const cover = Math.min(100, nonNegative("cover"));
+    const investment = nonNegative("investment");
     const weekly = people * hours * rate * (cover / 100);
     const yearly = weekly * 48;
     const w = document.getElementById("weekly");
     if (!w) return;
-    w.textContent = "$" + Math.round(weekly).toLocaleString();
-    document.getElementById("yearly").textContent = "$" + Math.round(yearly).toLocaleString();
-    document.getElementById("payback").textContent = yearly ? (2500 / (yearly / 12)).toFixed(1) : "—";
+    if (!Number.isFinite(weekly) || !Number.isFinite(yearly)) {
+      w.textContent = "—";
+      document.getElementById("yearly").textContent = "—";
+      document.getElementById("payback").textContent = "—";
+      return;
+    }
+    w.textContent = formatUSD(weekly);
+    document.getElementById("yearly").textContent = formatUSD(yearly);
+    const months = yearly > 0 && investment > 0 ? investment / (yearly / 12) : NaN;
+    document.getElementById("payback").textContent = Number.isFinite(months) ? formatMonths(months) : "—";
   }
-  ["people","hours","rate","cover"].forEach((id) => document.getElementById(id)?.addEventListener("input", roi));
+  ["people","hours","rate","cover","investment"].forEach((id) => document.getElementById(id)?.addEventListener("input", roi));
   roi();
   function finops() {
     const idle = document.getElementById("idle");
     if (!idle) return;
-    const spend = Number(document.getElementById("spend").value || 0);
-    const waste = Number(document.getElementById("waste").value || 0);
-    idle.textContent = "$" + Math.round(spend * waste / 100).toLocaleString();
+    const rawSpend = Number(document.getElementById("spend").value);
+    const rawWaste = Number(document.getElementById("waste").value);
+    const spend = Number.isFinite(rawSpend) ? Math.max(0, rawSpend) : 0;
+    const waste = Number.isFinite(rawWaste) ? Math.min(100, Math.max(0, rawWaste)) : 0;
+    idle.textContent = formatUSD(spend * (waste / 100));
   }
   ["spend","waste"].forEach((id) => document.getElementById(id)?.addEventListener("input", finops));
   finops();
+  // The page's earlier change listener sets document.lang before this repaint.
+  document.getElementById("zion-language")?.addEventListener("change", () => {
+    roi();
+    finops();
+  });
 
   const form = document.getElementById("ticket");
   const box = document.getElementById("tickets");
