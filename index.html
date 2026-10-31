@@ -4,68 +4,127 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Zion Tools · Zion Tech Group</title>
-  <meta name="description" content="ROI versus Starter and Growth, plus a FinOps waste cut. Planning math, not a guarantee. Figures stay in this browser."/>
+  <meta name="description" content="Free browser-based automation and cloud-cost scenario calculators. Five-language navigation, related tools and free online Discovery; illustrative values only."/>
   <meta name="theme-color" content="#0b1221"/>
   <link rel="icon" href="./favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap"/>
   <link rel="stylesheet" href="./assets/zion.css"/>
+<style>
+:focus-visible {outline:3px solid #7dd3fc;outline-offset:3px}
+@media(max-width:1100px){
+ .top{height:auto;min-height:56px;flex-wrap:wrap;padding:10px 12px;gap:8px}
+ .top .nav{order:3;flex-basis:100%;width:100%;overflow-x:auto;flex-wrap:nowrap;white-space:nowrap;padding-bottom:4px}
+ .top .nav a{flex-shrink:0}
+ .top .spacer{margin-left:auto}
+ .hero{padding:32px 0}
+}
+@media(max-width:480px){.top .brand{font-size:14px}.top .lang{min-width:110px!important}.footgrid{grid-template-columns:1fr}}
+</style>
   <link rel="canonical" href="https://tools.ziontechgroup.com/"/>
 </head>
 <body>
 <header class="top">
   <a class="brand" href="https://ziontechgroup.com/zion-network/"><span class="z" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M8 9.5h16l-10.5 13H24" stroke="#0b1221" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span>Zion <span style="color:var(--muted);font-weight:500">Network</span></span></a>
-  <nav class="nav"><a class="" href="https://ziontechgroup.com/zion-network/">Network</a>
-<a class="" href="https://ziontechgroup.com/zion-agents/">Agents</a>
-<a class="" href="https://ziontechgroup.com/zion-discovery/">Discovery</a>
-<a class="" href="https://ziontechgroup.com/zion-plans/">Plans</a>
-<a class="" href="https://ziontechgroup.com/zion-field/">Field</a>
-<a class="" href="https://ziontechgroup.com/zion-status/">Status</a>
-<a class="active" href="https://ziontechgroup.com/zion-tools/">Tools</a>
-<a class="" href="https://ziontechgroup.com/zion-portal/">Portal</a></nav>
+  <nav class="nav" aria-label="Zion app navigation"><a class="" href="https://ziontechgroup.com/zion-network/"><span data-i18n="navNetwork">Network</span></a>
+<a class="" href="https://ziontechgroup.com/zion-agents/"><span data-i18n="navAgents">Agents</span></a>
+<a class="" href="https://ziontechgroup.com/zion-discovery/"><span data-i18n="navDiscoveryMenu">Discovery</span></a>
+<a class="" href="https://ziontechgroup.com/zion-plans/"><span data-i18n="navPlans">Plans</span></a>
+<a class="" href="https://ziontechgroup.com/zion-field/"><span data-i18n="navField">Field</span></a>
+<a class="" href="https://ziontechgroup.com/zion-status/"><span data-i18n="navStatus">Status</span></a>
+<a class="active" href="https://ziontechgroup.com/zion-tools/"><span data-i18n="navTools">Tools</span></a>
+<a class="" href="https://ziontechgroup.com/zion-portal/"><span data-i18n="navPortal">Portal</span></a></nav>
   <span class="spacer"></span>
-  <a class="cta" href="https://calendly.com/kleber-ziontechgroup" target="_blank" rel="noreferrer">Book a call</a>
+  <label for="zion-language" id="zion-language-label" style="margin:0 4px 0 0"><span data-i18n="language">Language</span></label>
+  <select class="lang" id="zion-language" aria-labelledby="zion-language-label" style="width:auto;min-width:124px" autocomplete="off">
+    <option value="en">English</option><option value="pt">Português</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option>
+  </select>
+  <a class="cta" href="https://ziontechgroup.com/discovery/" data-localized-discovery data-i18n="navDiscovery">Free Discovery</a>
 </header>
 <main>
   <section class="hero"><div class="wrap">
-    <p class="kicker">Free</p>
-    <h1>Run the numbers before you buy a SKU.</h1>
-    <p class="lead">ROI versus Starter and Growth, plus a FinOps waste cut. Planning math, not a guarantee. Figures stay in this browser.</p>
+    <p class="kicker" data-i18n="kicker">Free local calculators</p>
+    <h1 data-i18n="heading">Test your assumptions before deciding.</h1>
+    <p class="lead" data-i18n="intro">Model capacity value, illustrative Starter payback and potential cloud waste. These are editable scenarios, not measured savings, quotes or implementation commitments. Calculator inputs are processed in this browser.</p>
     <div class="row">
-      <a class="cta" href="https://buy.stripe.com/8x214o8NW35l5Xp3hm4ZG0b" target="_blank" rel="noreferrer">Pay Discovery $99</a>
+      <a class="cta" href="https://ziontechgroup.com/discovery/" data-localized-discovery data-i18n="startDiscovery">Start free Discovery</a>
       <a class="ghost" href="https://ziontechgroup.com" target="_blank" rel="noreferrer">ziontechgroup.com</a>
     </div>
   </div></section>
   <div class="wrap">
         <section class="grid g-2">
           <article class="card">
-            <h3>Automation ROI</h3>
-            <label>People in the process</label><input id="people" type="number" value="3"/>
-            <label style="margin-top:8px">Hours / week / person</label><input id="hours" type="number" value="8"/>
-            <label style="margin-top:8px">Loaded hourly USD</label><input id="rate" type="number" value="45"/>
-            <label style="margin-top:8px">Automable share %</label><input id="cover" type="number" value="60"/>
-            <p style="margin-top:16px">Weekly recovered <strong id="weekly">$648</strong> · Yearly <strong id="yearly">$31,104</strong> · Starter payback <strong id="payback">1.0</strong> mo</p>
+            <h3 data-i18n="roiTitle">Automation scenario</h3>
+            <label for="people" data-i18n="people">People in the process</label><input id="people" type="number" min="0" step="1" value="3"/>
+            <label for="hours" style="margin-top:8px" data-i18n="hours">Hours / week / person</label><input id="hours" type="number" min="0" step="0.5" value="8"/>
+            <label for="rate" style="margin-top:8px" data-i18n="rate">Fully loaded hourly cost (USD)</label><input id="rate" type="number" min="0" step="1" value="45"/>
+            <label for="cover" style="margin-top:8px" data-i18n="cover">Potentially automatable share (%)</label><input id="cover" type="number" min="0" max="100" step="1" value="60"/>
+            <label for="investment" style="margin-top:8px" data-i18n="investment">Illustrative project budget (USD)</label><input id="investment" type="number" min="0" step="100" value="2500"/>
+            <p style="margin-top:16px" aria-live="polite"><span data-i18n="weekly">Illustrative weekly value</span> <strong id="weekly">$648</strong> · <span data-i18n="yearly">Annual scenario</span> <strong id="yearly">$31,104</strong> · <span data-i18n="payback">Illustrative Starter payback</span> <strong id="payback">1.0</strong> <span data-i18n="months">months</span></p>
           </article>
           <article class="card">
-            <h3>FinOps waste cut</h3>
-            <label>Monthly cloud spend USD</label><input id="spend" type="number" value="18000"/>
-            <label style="margin-top:8px">Estimated waste %</label><input id="waste" type="number" value="22"/>
-            <p class="price" id="idle" style="margin-top:16px">$3,960</p>
-            <p>Idle monthly. FinOps sits on Consulting $499 or Growth — never a mystery SKU.</p>
-            <a class="ghost" href="https://zion-support.github.io/zion-discovery/">Map the spend owner</a>
+            <h3 data-i18n="finTitle">Cloud waste scenario</h3>
+            <label for="spend" data-i18n="spend">Monthly cloud spend (USD)</label><input id="spend" type="number" min="0" step="100" value="18000"/>
+            <label for="waste" style="margin-top:8px" data-i18n="waste">Assumed waste (%)</label><input id="waste" type="number" min="0" max="100" step="1" value="22"/>
+            <p class="price" id="idle" style="margin-top:16px" aria-live="polite">$3,960</p>
+            <p data-i18n="cloudNote">Potential monthly waste under your assumptions. This is not a cloud audit or guaranteed saving.</p>
+            <a class="ghost" href="https://ziontechgroup.com/discovery/" data-localized-discovery data-i18n="mapOwner">Map the process with free Discovery</a>
           </article>
-        </section></div>
+        </section>
+    <section class="card" aria-labelledby="next-steps-title" style="margin:0 0 32px">
+      <h2 id="next-steps-title" data-i18n="nextTitle">Connect your estimate to a safer next step</h2>
+      <p data-i18n="nextBody">Write down the process owner and measured baseline. Review assumptions and governance before testing with synthetic or authorized data. No estimate reserves an engineer, places an order or approves a paid project.</p>
+      <div class="row">
+        <a class="ghost" href="https://ziontechgroup.com/apps/" data-i18n="networkGuide">Explore related apps</a>
+        <a class="ghost" href="https://ziontechgroup.com/ai-governance-checklist/" data-i18n="governance">Review AI governance</a>
+        <a class="ghost" href="https://ziontechgroup.com/discovery/" data-localized-discovery data-i18n="freeDiscovery">Free online Discovery</a>
+      </div>
+      <p data-i18n="limits">The calculations use 48 workweeks per year and an editable hypothetical budget. Change inputs to test scenarios. There is no account connection, data upload, payment, booking or supplier commitment.</p>
+    </section>
+  </div>
 </main>
 <footer><div class="wrap footgrid">
   <div>
     <div class="brand"><span class="z" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M8 9.5h16l-10.5 13H24" stroke="#0b1221" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span><strong>Zion Tech Group</strong></div>
-    <p>AI & IT services for measurable growth. Official menu: Discovery, Consulting, Starter, Growth.</p>
+    <p data-i18n="footer">AI and IT services. Free online Discovery; consulting and implementation are optional, separately scoped services.</p>
     <p><a href="mailto:kleber@ziontechgroup.com">kleber@ziontechgroup.com</a><br>+1 302 464 0950<br>364 E Main St STE 1008, Middletown, DE 19709</p>
   </div>
-  <div><strong>Network</strong><p><a href="https://ziontechgroup.com/zion-network/">network.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-network/">zion-network</a><br><a href="https://ziontechgroup.com/zion-agents/">agents.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-agents/">zion-agents</a><br><a href="https://ziontechgroup.com/zion-discovery/">discovery.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-discovery/">zion-discovery</a><br><a href="https://ziontechgroup.com/zion-plans/">plans.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-plans/">zion-plans</a><br><a href="https://ziontechgroup.com/zion-field/">field.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-field/">zion-field</a><br><a href="https://ziontechgroup.com/zion-status/">status.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-status/">zion-status</a><br><a href="https://ziontechgroup.com/zion-tools/">tools.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-tools/">zion-tools</a><br><a href="https://ziontechgroup.com/zion-portal/">portal.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-portal/">zion-portal</a></p></div>
-  <div><strong>Source</strong><p><a href="https://ziontechgroup.com">ziontechgroup.com</a><br>
+  <div><strong data-i18n="networkFooter">Network</strong><p><a href="https://ziontechgroup.com/zion-network/">network.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-network/">zion-network</a><br><a href="https://ziontechgroup.com/zion-agents/">agents.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-agents/">zion-agents</a><br><a href="https://ziontechgroup.com/zion-discovery/">discovery.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-discovery/">zion-discovery</a><br><a href="https://ziontechgroup.com/zion-plans/">plans.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-plans/">zion-plans</a><br><a href="https://ziontechgroup.com/zion-field/">field.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-field/">zion-field</a><br><a href="https://ziontechgroup.com/zion-status/">status.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-status/">zion-status</a><br><a href="https://ziontechgroup.com/zion-tools/">tools.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-tools/">zion-tools</a><br><a href="https://ziontechgroup.com/zion-portal/">portal.ziontechgroup.com</a> · <a href="https://ziontechgroup.com/zion-portal/">zion-portal</a></p></div>
+  <div><strong data-i18n="sourceFooter">Source</strong><p><a href="https://ziontechgroup.com">ziontechgroup.com</a><br>
   <a href="https://github.com/Zion-support">github.com/Zion-support</a></p></div>
 </div></footer>
+<script>
+(function () {
+  "use strict";
+  const dictionary = {"en":{"language":"Language","navDiscovery":"Free Discovery","startDiscovery":"Start free Discovery","kicker":"Free local calculators","heading":"Test your assumptions before deciding.","intro":"Model capacity value, illustrative Starter payback and potential cloud waste. These are editable scenarios, not measured savings, quotes or implementation commitments. Calculator inputs are processed in this browser.","roiTitle":"Automation scenario","finTitle":"Cloud waste scenario","people":"People in the process","hours":"Hours / week / person","rate":"Fully loaded hourly cost (USD)","cover":"Potentially automatable share (%)","spend":"Monthly cloud spend (USD)","waste":"Assumed waste (%)","weekly":"Illustrative weekly value","yearly":"Annual scenario","payback":"Illustrative Starter payback","months":"months","cloudNote":"Potential monthly waste under your assumptions. This is not a cloud audit or guaranteed saving.","mapOwner":"Map the process with free Discovery","nextTitle":"Connect your estimate to a safer next step","nextBody":"Write down the process owner and measured baseline. Review assumptions and governance before testing with synthetic or authorized data. No estimate reserves an engineer, places an order or approves a paid project.","networkGuide":"Explore related apps","governance":"Review AI governance","freeDiscovery":"Free online Discovery","limits":"The calculations use 48 workweeks per year and an editable hypothetical budget. Change inputs to test scenarios. There is no account connection, data upload, payment, booking or supplier commitment.","footer":"AI and IT services. Free online Discovery; consulting and implementation are optional, separately scoped services.","networkFooter":"Network","sourceFooter":"Source","investment":"Illustrative project budget (USD)","navNetwork":"Network","navAgents":"Agents","navDiscoveryMenu":"Discovery","navPlans":"Plans","navField":"Field","navStatus":"Status","navTools":"Tools","navPortal":"Portal"},"pt":{"language":"Idioma","navDiscovery":"Discovery grátis","startDiscovery":"Iniciar Discovery grátis","kicker":"Calculadoras locais gratuitas","heading":"Teste suas premissas antes de decidir.","intro":"Simule o valor de capacidade, o retorno hipotético do plano Starter e o desperdício de nuvem. São cenários ajustáveis, não economias medidas, orçamentos ou compromissos. Os dados são calculados neste navegador.","roiTitle":"Cenário de automação","finTitle":"Cenário de desperdício em nuvem","people":"Pessoas no processo","hours":"Horas por semana por pessoa","rate":"Custo horário total (USD)","cover":"Parcela potencialmente automatizável (%)","spend":"Gasto mensal em nuvem (USD)","waste":"Desperdício presumido (%)","weekly":"Valor semanal ilustrativo","yearly":"Cenário anual","payback":"Retorno hipotético do Starter","months":"meses","cloudNote":"Possível desperdício mensal conforme suas premissas. Não é auditoria de nuvem nem economia garantida.","mapOwner":"Mapear o processo no Discovery gratuito","nextTitle":"Transforme a estimativa em uma próxima etapa segura","nextBody":"Registre o responsável e a linha de base medida. Revise premissas e governança antes de testar com dados sintéticos ou autorizados. Nenhuma estimativa reserva técnico, realiza compras ou aprova projeto pago.","networkGuide":"Explorar apps relacionados","governance":"Revisar governança de IA","freeDiscovery":"Discovery online grátis","limits":"O cálculo usa 48 semanas de trabalho por ano e um orçamento hipotético editável. Ajuste os parâmetros. Não há conexão com contas, envio de dados, pagamento, reserva ou compromisso de fornecedor.","footer":"Serviços de IA e TI. Discovery online gratuito; consultoria e implementação são opcionais e contratadas separadamente.","networkFooter":"Rede","sourceFooter":"Código-fonte","investment":"Orçamento hipotético do projeto (USD)","navNetwork":"Rede","navAgents":"Agentes","navDiscoveryMenu":"Discovery","navPlans":"Planos","navField":"Campo","navStatus":"Status","navTools":"Ferramentas","navPortal":"Portal"},"es":{"language":"Idioma","navDiscovery":"Discovery gratuito","startDiscovery":"Iniciar Discovery gratis","kicker":"Calculadoras locales gratuitas","heading":"Compruebe sus supuestos antes de decidir.","intro":"Modele el valor de capacidad, el retorno hipotético de Starter y el posible desperdicio en la nube. Son escenarios editables, no ahorros medidos, presupuestos ni compromisos. Los cálculos se realizan en este navegador.","roiTitle":"Escenario de automatización","finTitle":"Escenario de desperdicio en la nube","people":"Personas en el proceso","hours":"Horas semanales por persona","rate":"Costo horario total (USD)","cover":"Porcentaje potencialmente automatizable (%)","spend":"Gasto mensual en la nube (USD)","waste":"Desperdicio supuesto (%)","weekly":"Valor semanal ilustrativo","yearly":"Escenario anual","payback":"Retorno hipotético de Starter","months":"meses","cloudNote":"Posible desperdicio mensual según sus supuestos. No es una auditoría ni ahorro garantizado.","mapOwner":"Mapear el proceso con Discovery gratuito","nextTitle":"Conecte la estimación con un siguiente paso seguro","nextBody":"Identifique al responsable y una línea base medida. Revise los supuestos y la gobernanza antes de probar con datos sintéticos o autorizados. Ninguna estimación reserva técnicos, compra ni aprueba un proyecto de pago.","networkGuide":"Explorar apps relacionados","governance":"Revisar la gobernanza de IA","freeDiscovery":"Discovery en línea gratuito","limits":"Los cálculos usan 48 semanas laborales al año y un presupuesto hipotético editable. Ajuste los datos. No se conectan cuentas ni se envían datos, pagos, reservas o compromisos.","footer":"Servicios de IA y TI. Discovery en línea gratuito; consultoría e implementación son opcionales y se contratan por separado.","networkFooter":"Red","sourceFooter":"Código fuente","investment":"Presupuesto hipotético del proyecto (USD)","navNetwork":"Red","navAgents":"Agentes","navDiscoveryMenu":"Discovery","navPlans":"Planes","navField":"Campo","navStatus":"Estado","navTools":"Herramientas","navPortal":"Portal"},"fr":{"language":"Langue","navDiscovery":"Discovery gratuit","startDiscovery":"Lancer le Discovery gratuit","kicker":"Calculateurs locaux gratuits","heading":"Testez vos hypothèses avant de décider.","intro":"Modélisez la valeur potentielle, le délai de retour hypothétique de Starter et le gaspillage cloud possible. Ce sont des scénarios modifiables, ni économies mesurées, ni devis, ni engagements. Les calculs restent dans ce navigateur.","roiTitle":"Scénario d’automatisation","finTitle":"Scénario de gaspillage cloud","people":"Personnes concernées","hours":"Heures par semaine et par personne","rate":"Coût horaire chargé (USD)","cover":"Part potentiellement automatisable (%)","spend":"Dépense cloud mensuelle (USD)","waste":"Gaspillage supposé (%)","weekly":"Valeur hebdomadaire indicative","yearly":"Scénario annuel","payback":"Retour hypothétique de Starter","months":"mois","cloudNote":"Gaspillage mensuel potentiel selon vos hypothèses. Ce n’est ni un audit cloud ni une économie garantie.","mapOwner":"Cartographier le processus avec le Discovery gratuit","nextTitle":"Transformez l’estimation en étape plus sûre","nextBody":"Identifiez un responsable et une référence mesurée. Vérifiez les hypothèses et la gouvernance avant tout essai avec des données fictives ou autorisées. Aucun calcul ne réserve un technicien, ne commande ni n’approuve un projet payant.","networkGuide":"Explorer les apps associées","governance":"Vérifier la gouvernance IA","freeDiscovery":"Discovery en ligne gratuit","limits":"Le calcul suppose 48 semaines de travail par an et un budget hypothétique modifiable. Ajustez les entrées. Aucun accès au compte, transfert de données, paiement, réservation ou engagement fournisseur.","footer":"Services IA et IT. Discovery en ligne gratuit ; conseil et déploiement facultatifs, avec périmètre distinct.","networkFooter":"Réseau","sourceFooter":"Code source","investment":"Budget hypothétique du projet (USD)","navNetwork":"Réseau","navAgents":"Agents","navDiscoveryMenu":"Discovery","navPlans":"Offres","navField":"Terrain","navStatus":"Statut","navTools":"Outils","navPortal":"Portail"},"de":{"language":"Sprache","navDiscovery":"Kostenloses Discovery","startDiscovery":"Kostenloses Discovery starten","kicker":"Kostenlose lokale Rechner","heading":"Prüfen Sie Annahmen vor der Entscheidung.","intro":"Modellieren Sie Kapazitätswerte, eine hypothetische Starter-Amortisation und mögliche Cloud-Verschwendung. Dies sind veränderbare Szenarien, keine gemessenen Einsparungen, Angebote oder Zusagen. Die Berechnung erfolgt in diesem Browser.","roiTitle":"Automatisierungsszenario","finTitle":"Cloud-Verschwendungsszenario","people":"Personen im Prozess","hours":"Stunden pro Woche und Person","rate":"Vollkosten je Stunde (USD)","cover":"Potenziell automatisierbarer Anteil (%)","spend":"Monatliche Cloud-Ausgaben (USD)","waste":"Angenommene Verschwendung (%)","weekly":"Illustrativer Wochenwert","yearly":"Jahresszenario","payback":"Hypothetische Starter-Amortisation","months":"Monate","cloudNote":"Mögliche monatliche Verschwendung gemäß Annahmen. Kein Cloud-Audit und keine garantierte Einsparung.","mapOwner":"Prozess mit kostenlosem Discovery erfassen","nextTitle":"Von der Schätzung zum sicheren nächsten Schritt","nextBody":"Notieren Sie Prozessverantwortliche und eine gemessene Ausgangsbasis. Prüfen Sie Annahmen und Governance vor Tests mit synthetischen oder genehmigten Daten. Keine Schätzung reserviert Techniker, bestellt Leistungen oder genehmigt ein bezahltes Projekt.","networkGuide":"Verwandte Apps ansehen","governance":"KI-Governance prüfen","freeDiscovery":"Kostenloses Online-Discovery","limits":"Die Berechnung nutzt 48 Arbeitswochen pro Jahr und ein editierbares hypothetisches Budget. Passen Sie die Eingaben an. Keine Kontoverbindung, Datenübermittlung, Zahlung, Buchung oder Lieferantenzusage.","footer":"KI- und IT-Services. Kostenloses Online-Discovery; Beratung und Umsetzung sind optional und werden separat vereinbart.","networkFooter":"Netzwerk","sourceFooter":"Quellcode","investment":"Hypothetisches Projektbudget (USD)","navNetwork":"Netzwerk","navAgents":"Agenten","navDiscoveryMenu":"Discovery","navPlans":"Tarife","navField":"Außendienst","navStatus":"Status","navTools":"Werkzeuge","navPortal":"Portal"}};
+  const picker = document.getElementById("zion-language");
+  function apply(locale) {
+    const lang = Object.prototype.hasOwnProperty.call(dictionary, locale) ? locale : "en";
+    document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
+    picker.value = lang;
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      const key = node.getAttribute("data-i18n");
+      if (Object.prototype.hasOwnProperty.call(dictionary[lang], key)) {
+        node.textContent = dictionary[lang][key];
+      }
+    });
+    document.title = "Zion Tools — " + dictionary[lang].heading;
+    // Localized Discovery entry points are listed by the main site's language selector.
+    const discoveryPaths = {en:"/discovery/",pt:"/pt/discovery/",es:"/es/discovery/",fr:"/fr/discovery/",de:"/de/discovery/"};
+    document.querySelectorAll('[data-localized-discovery]').forEach((anchor) => {
+      anchor.setAttribute("href", "https://ziontechgroup.com" + discoveryPaths[lang]);
+    });
+  }
+  const lang = new URLSearchParams(location.search).get("lang") || "en";
+  apply(lang);
+  picker.addEventListener("change", () => {
+    const url = new URL(location.href);
+    url.searchParams.set("lang", picker.value);
+    history.replaceState(null, "", url.pathname + url.search + url.hash);
+    apply(picker.value);
+  });
+})();
+</script>
 <script src="./assets/zion.js"></script>
 </body>
 </html>
