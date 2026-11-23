@@ -23,13 +23,13 @@ GitHub Pages is already enabled on `main` (`/`). HTTPS certificate provisions af
 
 - [Zion Network](https://ziontechgroup.com/zion-network/) — `network.ziontechgroup.com`
 - [Zion Agents](https://ziontechgroup.com/zion-agents/) — `agents.ziontechgroup.com`
-- [Zion Discovery](https://ziontechgroup.com/zion-discovery/) — `discovery.ziontechgroup.com`
+- [Free online Discovery](https://ziontechgroup.com/discovery/)
 - [Zion Plans](https://ziontechgroup.com/zion-plans/) — `plans.ziontechgroup.com`
 - [Zion Field](https://ziontechgroup.com/zion-field/) — `field.ziontechgroup.com`
 - [Zion Status](https://ziontechgroup.com/zion-status/) — `status.ziontechgroup.com`
 - [Zion Tools](https://ziontechgroup.com/zion-tools/) — `tools.ziontechgroup.com`
 - [Zion Portal](https://ziontechgroup.com/zion-portal/) — `portal.ziontechgroup.com`
 
-Official commercial menu (only these four): Discovery $99 · Consulting $499 · Starter $2,500 · Growth $8,000/mo.
+Use the automation and cloud-cost calculators to compare assumptions before choosing a project. The payback estimate uses the project budget entered by the visitor. The [free online Discovery](https://ziontechgroup.com/discovery/) recommends resources for one process and lets the participant request a written summary. Consulting and implementation are optional services with a separate scope.
 
 Contact: kleber@ziontechgroup.com · +1 302 464 0950 · 364 E Main St STE 1008, Middletown, DE 19709
