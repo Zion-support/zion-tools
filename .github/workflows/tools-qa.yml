@@ -1,0 +1,20 @@
+name: Zion Tools local-only QA
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'assets/zion.js'
+      - 'scripts/test-tools.cjs'
+      - '.github/workflows/tools-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out exact pull request revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Run dependency-free localization and calculator checks
+        run: node scripts/test-tools.cjs
